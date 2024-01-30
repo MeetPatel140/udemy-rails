@@ -1,0 +1,23 @@
+.jumbotron {
+    background-image: asset-url('writing.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    color: white;
+    position: relative;
+}
+
+.jumbotron::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: asset-url('writing.jpg');
+    background-size: cover;
+    filter: blur(20px);
+    z-index: -1;
+}
