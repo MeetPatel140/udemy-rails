@@ -14,6 +14,11 @@ Rails.application.routes.draw do
   get "about", to: "pages#about"
 
   resources :articles
+<<<<<<< Updated upstream
 
+>>>>>>> Stashed changes
+=======
+  get "signup", to: "users#new"
+  resources :users, exept: [:new]
 >>>>>>> Stashed changes
 end

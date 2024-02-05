@@ -1,0 +1,21 @@
+<div class="container">
+  <%= render 'errors', obj: @article %>
+    
+    <%= form_with(model: @article, local: true, class: 'my-4') do |f| %>
+    
+      <div class="mb-1">
+        <%= f.label :title, class: 'form-label' %> <br>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+    
+      <div class="mb-1">
+        <%= f.label :description, class: 'form-label' %> <br>
+        <%= f.text_area :description, class: 'form-control' %>
+      </div>
+    
+      <div class="mb-3 d-flex justify-content-start align-items-center gap-3">
+        <%= f.submit 'Submit', class: 'btn btn-primary' %>
+        <%= link_to 'Back', articles_path, class: 'btn btn-secondary' %>
+      </div>
+    <% end %>
+    </div>

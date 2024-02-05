@@ -1,48 +1,35 @@
-<h1 class="text-center mt-3">Articles Listing Page</h1>
-
-<% @articles.each do |article| %>
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<%= article.id %>">
-      <%= article.title %>
+<div class="d-flex justify-content-between align-items-center mt-4">
+  <h1 class="text-center mt-3">Articles Listing Page</h1>
+  <button class="btn btn-success"> 
+    <i class="fa-solid fa-plus"></i>
+    <%= link_to 'New', new_article_path, class: "text-white" %>
   </button>
+</div>
 
-  <div class="modal fade modal-fullscreen custom-modal" id="exampleModal<%= article.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-fullscreen">
-          <div class="modal-content bg-white">
-              <div class="modal-header">
-                  <h5 class="modal-title text-dard" id="exampleModalLabel"><%= article.title %></h5>
-                  <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                  <%= article.description %>
-              </div>
-              <div class="modal-footer">
-                  <%= link_to 'Show', article_path(article), class: "btn btn-sm btn-info" %>
-                  <%= link_to 'Edit', edit_article_path(article), class: "btn btn-sm btn-secondary" %>
-                  <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal<%= article.id %>">
-                    Delete
-                  </button>
-              </div>
-          </div>
-      </div>
-  </div>
-  <div class="modal fade" id="deleteModal<%= article.id %>" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Are you sure you want to delete <%= article.title %>?
-        </div>
-        <div class="modal-footer">
-          <%= link_to 'Cancel', '#', class: "btn btn-secondary", data: { bs_dismiss: "modal" } %>
-          <%= link_to 'Delete', article_path(article), data: {turbo_method: :delete }, class: "btn btn-danger" %>
+<d class="row">
+<% @articles.reverse_each do |article| %>
+  <div class="col-6">
+    <div class="card text-center mt-5 shadow-lg">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title m-0"><i class="fa fa-user bg-white p-2 rounded-circle"></i> <%= article.user.username %></h5>
+        <div>
+          <button class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i> <%= link_to 'View', article_path(article), class: "text-white" %></button>
+          <button class="btn btn-sm btn-secondary"><i class="fa-solid fa-pen-to-square"></i> <%= link_to 'Edit', edit_article_path(article), class: "text-white" %></button>
+          <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> <%= link_to 'Delete', article_path(article), data: {turbo_method: :delete }, class: "text-white" %></button>
         </div>
       </div>
+      <div class="card-body">
+        <h5 class="card-title"><%= article.title %></h5>
+        <p class="card-text"><%= article.description %></p>
+      </div>
+      <div class="card-footer text-muted d-flex align-items-center justify-content-between">
+        <p class="card-text m-0" style="font-size: 12px;">Created on: <%= article.created_at.strftime('%d-%m-%Y') %> </p>
+        <p class="card-text m-0" style="font-size: 12px;">Updated on: <%= time_ago_in_words(article.updated_at) %> ago</p>        
+      </div>      
     </div>
   </div>
-<% end %>
-<p>
-    <%= link_to 'Create New Article', new_article_path, class: "btn btn-sm bg-success text-light text-uppercase mt-5" %>
-</p>
+  <% end %>
+</div>
+        
+        
+  
