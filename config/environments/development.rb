@@ -70,7 +70,8 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
-
+  config.hosts << "243c-2401-4900-1f3f-8d2a-6ca5-9a24-6f45-5358.ngrok-free.app"
+  config.hosts << "243c-2401-4900-1f3f-8d2a-6ca5-9a24-6f45-5358.ngrok-free.app"
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
 end
