@@ -1,0 +1,30 @@
+<h1 class="text-center mt-4">Alpha Bloggers</h1>
+<div class="container">
+  <div class="row">
+      <% @users.each do |user| %>
+        <div class="col-6">
+          <div class="card text-center mt-5 shadow-lg">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h5 class="card-title m-0 d-flex align-items-center gap-3"><%= link_to gravatar_for(user, size: 30), user_path(user), class: "rounded-circle" %> <%= link_to user.username, user_path(user) %></h5>
+              <div class="d-flex align-items-center gap-3">
+                <button class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i> <%= link_to 'View Profile', user, class: "text-white" %></button>
+                <% if logged_in? && user == current_user %>
+                <button class="btn btn-sm btn-secondary"><i class="fa-solid fa-pen-to-square"></i> <%= link_to 'Edit Profile', edit_user_path(user), class: "text-white" %></button>
+                <% end %>
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to gravatar_for(user, size: 150), user_path(user) %></h5>
+              <p class="cart-text"><%= pluralize(user.articles.count, "article") %></p> 
+            </div>
+            <div class="card-footer text-muted d-flex align-items-center justify-content-between">
+              <p class="card-text m-0" style="font-size: 12px;">Joined : <%= time_ago_in_words(user.updated_at) %> ago</p>        
+            </div>      
+          </div>
+        </div>
+      <% end %>
+  </div>
+</div>
+<div class="flickr_pagination mt-5 mb-5">
+  <%= will_paginate @users, :container => false %>
+</div>
