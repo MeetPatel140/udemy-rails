@@ -1,14 +1,19 @@
 <h1 class="display-4 text-center mt-4">SHOW PAGE</h1>
+<div class="container">
 <div class="card mt-4">
-  <div class="card-header font-italic"> 
-      <span class="card-title m-0"><i class="fa fa-user bg-white p-2 rounded-circle"></i> <%= @article.user.username %></span>
+  <div class="card-header font-italic d-flex justify-content-between align-items-center"> 
+      <span class="card-title m-0 d-flex align-items-center gap-3"><%= link_to gravatar_for(@article.user, size: 30), user_path(@article.user) %> by <%= @article.user.username %></span>
+      <div>
+      <%= link_to 'Back', articles_path, class: 'btn btn-sm btn-secondary' %>
+      <% if logged_in? && @article.user == current_user %> 
+      <%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-sm btn-primary' %> 
+      <%= link_to 'Delete', article_path(@article), method: :delete, data: { turbo_confirm: 'Are you sure?', turbo_method: :delete }, class: 'btn btn-sm btn-danger' %>
+      <% end %>
+    </div>
   </div>
   <div class="card-body">
     <p class="card-text"><strong>Title: </strong><%= @article.title %></p>
     <p class="card-text"><strong>Description: </strong><%= @article.description %></p>
-
-    <%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-primary' %> 
-    <%= link_to 'Back', articles_path, class: 'btn btn-secondary' %> 
-    <%= link_to 'Delete', article_path(@article), method: :delete, data: { turbo_confirm: 'Are you sure?', turbo_method: :delete }, class: 'btn btn-danger' %>
   </div>
+</div>
 </div>
