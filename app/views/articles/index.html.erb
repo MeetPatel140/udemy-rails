@@ -1,5 +1,4 @@
 <h1 class="text-center mt-3">Articles Listing Page</h1>
-
 <% @articles.each do |article| %>
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<%= article.id %>">
       <%= article.title %>
