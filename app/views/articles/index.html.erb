@@ -10,6 +10,9 @@
           <div class="modal-content bg-black text-white">
               <div class="modal-header">
                   <h5 class="modal-title text-white" id="exampleModalLabel"><%= article.title %></h5>
+          <div class="modal-content bg-white">
+              <div class="modal-header">
+                  <h5 class="modal-title text-dard" id="exampleModalLabel"><%= article.title %></h5>
                   <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
@@ -18,7 +21,6 @@
               <div class="modal-footer">
                   <%= link_to 'Show', article_path(article), class: "btn btn-sm btn-info" %>
                   <%= link_to 'Edit', edit_article_path(article), class: "btn btn-sm btn-secondary" %>
-                  <!-- Delete Button with Confirmation Modal -->
                   <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal<%= article.id %>">
                     Delete
                   </button>
@@ -44,7 +46,6 @@
     </div>
   </div>
 <% end %>
-
 <p>
     <%= link_to 'Create New Article', new_article_path, class: "btn btn-sm bg-success text-light text-uppercase mt-5" %>
 </p>
