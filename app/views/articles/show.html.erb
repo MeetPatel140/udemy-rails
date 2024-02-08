@@ -1,5 +1,4 @@
 <h1 class="display-4 text-center mt-4">SHOW PAGE</h1>
-
 <div class="card mt-4">
   <div class="card-body">
     <p class="card-text"><strong>Title: </strong><%= @article.title %></p>
@@ -10,3 +9,4 @@
     <%= link_to 'Delete', article_path(@article), method: :delete, data: { turbo_confirm: 'Are you sure?', turbo_method: :delete }, class: 'btn btn-danger' %>
   </div>
 </div>
+
