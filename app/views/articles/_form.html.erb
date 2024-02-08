@@ -1,5 +1,5 @@
 <div class="container">
-  <%= render 'errors' %>
+  <%= render 'errors', obj: @article %>
     
     <%= form_with(model: @article, local: true, class: 'my-4') do |f| %>
     
@@ -18,5 +18,4 @@
         <%= link_to 'Back', articles_path, class: 'btn btn-secondary' %>
       </div>
     <% end %>
-</div>
-
+   </div>
