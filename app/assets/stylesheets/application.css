@@ -208,3 +208,7 @@
 .navbar-home{
   padding: 10px 0px 10px 0px !important;
 }
+
+.garavtar-radius{
+  border-radius: 50% !important;
+}
