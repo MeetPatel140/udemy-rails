@@ -1,44 +1,47 @@
-<h1>Articles Listing Page</h1>
+<h1 class="text-center mt-3">Articles Listing Page</h1>
+<% @articles.each do |article| %>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<%= article.id %>">
+      <%= article.title %>
+  </button>
 
-<table>
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th colspan="3">Actions</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <% @articles.each do |article| %>
-            <tr>
-                <td><%= article.title %></td>
-                <td><%= article.description %></td>
-                <td><%= link_to 'Show', article_path(article) %></td>
-                <td><%= link_to 'Edit', edit_article_path(article) %></td>
-                <td><%= link_to 'Delete', article_path(article), data: { turbo_method: :delete } %></td>
-            </tr>
-            <div>
-            </div>
-        <% end %>
-    </tbody>
-</table>
+  <div class="modal fade modal-fullscreen custom-modal" id="exampleModal<%= article.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen">
+          <div class="modal-content bg-white">
+              <div class="modal-header">
+                  <h5 class="modal-title text-dard" id="exampleModalLabel"><%= article.title %></h5>
+                  <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <%= article.description %>
+              </div>
+              <div class="modal-footer">
+                  <%= link_to 'Show', article_path(article), class: "btn btn-sm btn-info" %>
+                  <%= link_to 'Edit', edit_article_path(article), class: "btn btn-sm btn-secondary" %>
+                  <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal<%= article.id %>">
+                    Delete
+                  </button>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="modal fade" id="deleteModal<%= article.id %>" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete <%= article.title %>?
+        </div>
+        <div class="modal-footer">
+          <%= link_to 'Cancel', '#', class: "btn btn-secondary", data: { bs_dismiss: "modal" } %>
+          <%= link_to 'Delete', article_path(article), data: {turbo_method: :delete }, class: "btn btn-danger" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
 <p>
-    <%= link_to 'Create New Article', new_article_path %>
-</p> 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <%= link_to 'Create New Article', new_article_path, class: "btn btn-sm bg-success text-light text-uppercase mt-5" %>
+</p>
