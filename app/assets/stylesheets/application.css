@@ -14,5 +14,162 @@
  *= require_self
  */
 
+ .btn-osm {
+    background-color: #007bff;
+    color: #fff;
+    transition: background-color 0.3s;
+}
 
- 
+.btn-osm:hover {
+    background-color: #0056b3;
+}
+
+.icon-animation {
+    animation: rotate 2s infinite linear;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+/* Hero Section Styles */
+.hero-section {
+    background-color: #f8f8f8; /* Adjust background color as needed */
+    padding: 100px 0; /* Adjust padding as needed */
+    height: 70vh;  
+    margin-top: 10vh;
+     
+}
+
+.hero-section h1 {
+    font-size: 36px; /* Adjust font size as needed */
+    margin-bottom: 20px; /* Adjust margin as needed */
+}
+
+.hero-section p {
+    font-size: 18px; /* Adjust font size as needed */
+    color: #555; /* Adjust text color as needed */
+    margin-bottom: 30px; /* Adjust margin as needed */
+}
+
+.hero-section a.btn {
+    font-size: 16px; /* Adjust font size as needed */
+}
+
+/* Centering Content */
+.hero-section .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.hero-section .row {
+    text-align: center;
+}
+.hero-section {
+    position: relative;
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    filter: blur(3.5px);
+}
+.hero-section {
+    position: relative;
+    overflow: hidden;
+}
+.video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.underLineAni li{
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    transition: 0.5s ease;
+}
+
+.underLineAni li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: 0.5s ease;
+}
+
+.underLineAni li a:hover::after {
+    width: 100%;
+}
+.wrapper{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    align-items: center;
+}
+  .wrapper .static-txt{
+    color: white;
+    font-size: 40px;
+    font-weight: 400;
+  }
+  .wrapper .dynamic-txts{
+    margin-left: 15px;
+    height: 90px;
+    height: 77px;
+    overflow: hidden;
+  }
+  .dynamic-txts li{
+    list-style: none;
+    color: #FC6D6D;
+    font-size: 40px;
+    font-weight: 500;
+    position: relative;
+    top: 0;
+    animation: slide 12s steps(4) infinite;
+  }
+  @keyframes slide {
+    100%{
+      top: -360px;
+    }
+  }
+  .dynamic-txts li span{
+    position: relative;
+    margin: 5px 0;
+    line-height: 90px;
+  }
+  .dynamic-txts li span::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 100%;
+    bottom: -4px;
+    width: 100%;
+    background: rgb(26,26,26);
+    border-left: 2px solid #FC6D6D;
+    animation: typing 3s steps(10) infinite;
+  }
+  @keyframes typing {
+    40%, 60%{
+      left: calc(100% + 30px);
+    }
+    100%{
+      left: 0;
+    }
+  }

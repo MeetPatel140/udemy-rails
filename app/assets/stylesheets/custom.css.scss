@@ -1,5 +1,5 @@
 .jumbotron {
-    background-image: asset-url('writing.jpg');
+    background-image: asset-url('writing.jpg') !important;
     background-size: cover;
     background-repeat: no-repeat;
     object-fit: cover;
@@ -16,7 +16,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: asset-url('writing.jpg');
+    background-image: asset-url('writing.jpg') !important;
     background-size: cover;
     filter: blur(20px);
     z-index: -1;
@@ -27,5 +27,26 @@
     max-width: 100% !important;
     height: 100vh;
     margin: 0;
+}
+.jumbotron1{
+    animation: fadeup 1.5s ease-in-out;
+}
+@keyframes fadeup {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    25% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    75% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
