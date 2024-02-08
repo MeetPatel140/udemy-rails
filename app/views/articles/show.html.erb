@@ -5,7 +5,7 @@
       <span class="card-title m-0 d-flex align-items-center gap-3"><%= link_to gravatar_for(@article.user, size: 30), user_path(@article.user) %> by <%= @article.user.username %></span>
       <div>
       <%= link_to 'Back', articles_path, class: 'btn btn-sm btn-secondary' %>
-      <% if logged_in? && @article.user == current_user %> 
+      <% if logged_in? && (@article.user == current_user || current_user.admin?) %> 
       <%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-sm btn-primary' %> 
       <%= link_to 'Delete', article_path(@article), method: :delete, data: { turbo_confirm: 'Are you sure?', turbo_method: :delete }, class: 'btn btn-sm btn-danger' %>
       <% end %>
