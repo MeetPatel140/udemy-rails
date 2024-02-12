@@ -1,6 +1,18 @@
 require "test_helper"
 
+module SignInHelper
+  def sign_in_as(user)
+    post login_path, params: { session: { email: user.email, password: user.password } }
+  end
+end
 class CreateCategoryTest < ActionDispatch::IntegrationTest
+  include SignInHelper
+
+  setup do
+    @admin_user = User.create(username: "johndoe", email: "johndoe@ex.com", password: "password", admin: true)
+    sign_in_as(@admin_user)
+  end
+
   test "get new category form and create category" do
     get "/categories/new"
     assert_response :success
@@ -13,16 +25,14 @@ class CreateCategoryTest < ActionDispatch::IntegrationTest
     assert_match "Sports", response.body
   end
 
-  test "invalid category submission results in failure" do
+  test "get new category form and reject invalid category submission" do
     get "/categories/new"
     assert_response :success
     assert_no_difference "Category.count" do
       post categories_path, params: { category: { name: " " } }
     end
-    assert_template "categories/new"
-    assert_select "h2.panel-title"
-    assert_select "div.panel-body"
+    assert_match "errors", response.body
+    assert_select 'div.alert'
+    assert_select 'h2.alert-heading'
   end
-
-
 end
