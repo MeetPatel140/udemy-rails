@@ -5,10 +5,10 @@ class UsersController < ApplicationController
 
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 5)
+    @users = User.paginate(page: params[:page], per_page: 6)
   end
   def show
-    @articles = @user.articles.paginate(page: params[:page], per_page: 5)
+    @articles = @user.articles.paginate(page: params[:page], per_page: 6)
   end
   def new
     @user = User.new
@@ -38,9 +38,15 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    session[:user_id] = nil if @user == current_user
-    flash[:notice] = "Account and all associated articles successfully deleted"
-    redirect_to articles_path
+    if @user == @user.admin?
+      session[:user_id] = nil if @user == current_user
+      flash[:notice] = "Account and all associated articles successfully deleted With use admin's superpower"
+      redirect_to users_path
+    else
+      session[:user_id] = nil
+      flash[:notice] = "Account and all associated articles successfully deleted"
+    redirect_to users_path
+    end
   end
 
   private
